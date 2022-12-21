@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D_Maze", "3D_Maze\3D_Maze.csproj", "{45D2513F-CD4C-4BB0-AB4F-EFF1E91BC5C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45D2513F-CD4C-4BB0-AB4F-EFF1E91BC5C5}.Debug|x86.ActiveCfg = Debug|x86
+		{45D2513F-CD4C-4BB0-AB4F-EFF1E91BC5C5}.Debug|x86.Build.0 = Debug|x86
+		{45D2513F-CD4C-4BB0-AB4F-EFF1E91BC5C5}.Release|x86.ActiveCfg = Release|x86
+		{45D2513F-CD4C-4BB0-AB4F-EFF1E91BC5C5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C73AC3B5-38AB-49B3-BD4F-09C0430C4D74}
+	EndGlobalSection
+EndGlobal
