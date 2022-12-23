@@ -11,7 +11,7 @@ namespace _3D_Maze
     class GoalObject
     {
         #region Fields
-        private GraphicsDevice device;
+        private GraphicsDevice graphicsDevice;
         private Texture2D texture;
 
         private Vector3 location;
@@ -40,7 +40,7 @@ namespace _3D_Maze
         #region Constructor
         public GoalObject(GraphicsDevice graphicsDevice, Vector3 playerLocation, float minDistance, Texture2D texture)
         {
-            device = graphicsDevice;
+            this.graphicsDevice = graphicsDevice;
             this.texture = texture;
 
             PositionObject(playerLocation, minDistance);
@@ -55,7 +55,7 @@ namespace _3D_Maze
             BuildFaceHorizontal(new Vector3(0, 1, 0), new Vector3(1, 1, 1));
             BuildFaceHorizontal(new Vector3(0, 0, 1), new Vector3(1, 0, 0));
 
-            objectVertexBuffer = new VertexBuffer(device, VertexPositionTexture.VertexDeclaration, vertices.Count, BufferUsage.WriteOnly);
+            objectVertexBuffer = new VertexBuffer(graphicsDevice, VertexPositionTexture.VertexDeclaration, vertices.Count, BufferUsage.WriteOnly);
 
             objectVertexBuffer.SetData<VertexPositionTexture>(vertices.ToArray());
         }
@@ -131,8 +131,8 @@ namespace _3D_Maze
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                device.SetVertexBuffer(objectVertexBuffer);
-                device.DrawPrimitives(PrimitiveType.TriangleList, 0, objectVertexBuffer.VertexCount / 3);
+                graphicsDevice.SetVertexBuffer(objectVertexBuffer);
+                graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, objectVertexBuffer.VertexCount / 3);
             }
         }
         #endregion

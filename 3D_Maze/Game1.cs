@@ -13,30 +13,30 @@ namespace _3D_Maze
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        Song song;
-        SoundEffect johnny;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private Song song;
+        private SoundEffect johnny;
 
-        Camera camera;
-        Maze maze;
-        BasicEffect effect;
+        private Camera camera;
+        private Maze maze;
+        private BasicEffect effect;
         //effect describes to the rendering system how the pixels
         //on the display should be constructed based on the code
 
-        float moveScale = 1.5f;
-        float rotateScale = MathHelper.PiOver2;
+        private float moveScale = 1.5f;
+        private float rotateScale = MathHelper.PiOver2;
         //both used in order to move the camera/player
 
         private GoalObject goalObject;
 
         //Texture2D hedge;
-        Texture2D HUD;
-        Texture2D Message;
-        Texture2D face;
+        private Texture2D HUD;
+        private Texture2D Message;
+        private Texture2D face;
 
-        bool goal = false;
-        bool scared = false;
+        private bool goal = false;
+        private bool scared = false;
 
         public Game1()
         {

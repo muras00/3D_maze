@@ -83,8 +83,7 @@ namespace _3D_Maze
 
         public Vector3 Rotate(float scale)
         {
-            //Checks whether the movement requested by the player is allowed
-            //The rotation of the camera also takes place here
+            //The rotation of the camera takes place here
             Matrix rotate = Matrix.CreateRotationY(rotation);
             Vector3 towards = new Vector3(0, 0, scale);
             towards = Vector3.Transform(towards, rotate);

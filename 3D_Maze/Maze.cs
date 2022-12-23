@@ -10,14 +10,14 @@ namespace _3D_Maze
 {
     class Maze
     {
-        VertexBuffer wallBuffer;
+        private VertexBuffer wallBuffer;
         //VertexBuffer holds a list of 3D vertices to send to the GPU
         //wallBuffer stores all the triangles necessary to generate the wall
 
-        Vector3[] wallPoints = new Vector3[8];
+        private Vector3[] wallPoints = new Vector3[8];
 
         //Color[] wallColors = new Color[4] { Color.Green, Color.DarkGreen, Color.ForestGreen, Color.DarkGreen };
-        Color[] wallColors = new Color[4] { Color.Green, Color.Green, Color.Green, Color.Green };
+        private Color[] wallColors = new Color[4] { Color.Green, Color.Green, Color.Green, Color.Green };
         //colors of the walls
 
         #region Fields
@@ -25,23 +25,23 @@ namespace _3D_Maze
         public const int mazeHeight = 10;
         //both sets the total size of the maze
 
-        GraphicsDevice device;
+        private GraphicsDevice graphicsDevice;
         //The GPU
 
-        VertexBuffer floorBuffer;
+        private VertexBuffer floorBuffer;
         //stores all the triangles necessary to generate the floor
 
-        Color[] floorColors = new Color[2] { Color.DarkOliveGreen, Color.Gray };
+        private Color[] floorColors = new Color[2] { Color.DarkOliveGreen, Color.Gray };
         //color of the floor
 
         private Random rnd = new Random();
-        public Cell[,] Cells = new Cell[mazeWidth, mazeHeight];
+        private Cell[,] Cells = new Cell[mazeWidth, mazeHeight];
         #endregion
 
         #region Constructor
-        public Maze(GraphicsDevice device)
+        public Maze(GraphicsDevice graphicsDevice)
         {
-            this.device = device;
+            this.graphicsDevice = graphicsDevice;
 
             GenerateFloor();
 
@@ -91,7 +91,7 @@ namespace _3D_Maze
                 }
             }
 
-            floorBuffer = new VertexBuffer(device, VertexPositionColor.VertexDeclaration, vertexList.Count, BufferUsage.WriteOnly);
+            floorBuffer = new VertexBuffer(graphicsDevice, VertexPositionColor.VertexDeclaration, vertexList.Count, BufferUsage.WriteOnly);
 
             floorBuffer.SetData<VertexPositionColor>(vertexList.ToArray());
         }
@@ -129,11 +129,11 @@ namespace _3D_Maze
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                device.SetVertexBuffer(floorBuffer);
-                device.DrawPrimitives(PrimitiveType.TriangleList, 0, floorBuffer.VertexCount / 3);
+                graphicsDevice.SetVertexBuffer(floorBuffer);
+                graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, floorBuffer.VertexCount / 3);
                 //causes GPU to interpret the vertex buffer and output the triangles contained to itself (the GPU)
-                device.SetVertexBuffer(wallBuffer);
-                device.DrawPrimitives(PrimitiveType.TriangleList, 0, wallBuffer.VertexCount / 3);
+                graphicsDevice.SetVertexBuffer(wallBuffer);
+                graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, wallBuffer.VertexCount / 3);
             }
         }
         #endregion
@@ -210,6 +210,7 @@ namespace _3D_Maze
                 }
             }
         }
+
         #region Walls
         private void BuildWallBuffer()
         {
@@ -227,7 +228,7 @@ namespace _3D_Maze
                 }
             }
 
-            wallBuffer = new VertexBuffer(device, VertexPositionColor.VertexDeclaration, wallVertexList.Count, BufferUsage.WriteOnly);
+            wallBuffer = new VertexBuffer(graphicsDevice, VertexPositionColor.VertexDeclaration, wallVertexList.Count, BufferUsage.WriteOnly);
 
             wallBuffer.SetData<VertexPositionColor>(wallVertexList.ToArray());
         }
@@ -235,8 +236,7 @@ namespace _3D_Maze
         private List<VertexPositionColor> BuildMazeWall(int x, int z)
         {
             //generates points that make up the triangles for the wall
-            List<VertexPositionColor> triangles = new
-                List<VertexPositionColor>();
+            List<VertexPositionColor> triangles = new List<VertexPositionColor>();
 
             if (Cells[x, z].Lines[0])
             {
